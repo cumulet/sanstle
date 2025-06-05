@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=5 format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://cpbdutqyutnig" path="res://scripts/players_input_manager.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://oea2uyph2jxn" path="res://character.tscn" id="2_206yn"]
+[ext_resource type="Script" uid="uid://blw8c87wwfho3" path="res://scripts/player_input_listener.gd" id="3_voljf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_206yn"]
 
 [node name="main" type="Node3D"]
 
 [node name="PlayersInputManager" type="Node3D" parent="."]
 script = ExtResource("1_ig7tw")
+
+[node name="character" parent="." instance=ExtResource("2_206yn")]
+
+[node name="player1" type="Node3D" parent="." node_paths=PackedStringArray("selected_player")]
+script = ExtResource("3_voljf")
+selected_player = NodePath("../character")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.8660254, -0.35355344, 0.35355344, 0, 0.7071068, 0.7071068, -0.50000006, -0.61237246, 0.61237246, 5.9412265, 12.245476, 9.807767)
+projection = 1
+size = 12.007
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(9.71765, 0, 0, 0, 25.434305, 0, 0, 0, 11.247122, 0, -12.749559, 0)
+mesh = SubResource("BoxMesh_206yn")

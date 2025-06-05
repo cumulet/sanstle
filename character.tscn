@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://oea2uyph2jxn"]
+
+[ext_resource type="PackedScene" uid="uid://byk08xrugk6au" path="res://blender_files/character.fbx" id="1_glpr6"]
+[ext_resource type="Texture2D" uid="uid://wnfarr4b1y0t" path="res://textures/face_01.png" id="2_pjt0s"]
+
+[node name="character" instance=ExtResource("1_glpr6")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, 0, -0.00081849826)
+bones/1/rotation = Quaternion(-3.1671973e-07, -1.4398651e-07, 0.8661055, -0.4998612)
+bones/2/rotation = Quaternion(-0.21004036, 0.11901018, -0.49173132, 0.8366123)
+bones/3/rotation = Quaternion(0.013928711, 0.0001470167, 0.005317535, 0.99988884)
+bones/6/rotation = Quaternion(0.20248437, 0.11254858, 0.47261584, 0.8502748)
+bones/7/rotation = Quaternion(0.26808295, 0.056228764, 0.079889104, 0.95842975)
+bones/9/rotation = Quaternion(-0.10281859, -0.057155464, 0.0059178285, 0.9930391)
+bones/12/rotation = Quaternion(0.38137704, -0.33234054, -0.47321725, 0.721226)
+bones/13/rotation = Quaternion(-0.28352457, 0.006756967, -0.073988035, 0.9560826)
+bones/17/rotation = Quaternion(-0.32455856, 0.12606595, 0.5134744, 0.78429157)
+bones/18/rotation = Quaternion(-0.12619156, -0.003271525, -0.08475509, 0.9883732)
+
+[node name="Sphere" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 1.4210855e-14, 1.0000001, -0.00018389465, -1.5928726e-05, -0.00018197659)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(0.99339646, 1.9557774e-08, -0.114732146, -0.11229828, 0.20488209, -0.97232306, 0.023506543, 0.9787865, 0.20352915, 0, -1.1257258e-09, 0.008624774)
+bone_name = "Body"
+bone_idx = 9
+
+[node name="Decal" type="Decal" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(0.0021540734, -0.0003714275, 1.3502708e-05, -4.993755e-11, -7.94132e-05, -0.0021844602, 0.00037167288, 0.0021526508, -7.825678e-05, 0.0006145899, 0.002668526, -0.0051296647)
+texture_albedo = ExtResource("2_pjt0s")
