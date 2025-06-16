@@ -6203,6 +6203,18 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
+},
+"materials": {
+"body": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/character_material_body.tres",
+"use_external/path": "uid://di6oqny537phn"
+},
+"membres": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://materials/character_material_limbs.tres",
+"use_external/path": "uid://bvfg64c2l45ej"
+}
 }
 }
 fbx/importer=0

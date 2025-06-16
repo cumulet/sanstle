@@ -1,6 +1,7 @@
+class_name PlayersManager
 extends Node3D
 
-
+var JoinedPlayers: Array[Node3D]
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("join"):

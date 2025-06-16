@@ -1,27 +1,171 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=21 format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://cpbdutqyutnig" path="res://scripts/players_input_manager.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://oea2uyph2jxn" path="res://character.tscn" id="2_206yn"]
+[ext_resource type="PackedScene" uid="uid://oea2uyph2jxn" path="res://gamescenes/character.tscn" id="2_206yn"]
+[ext_resource type="Script" uid="uid://cynhe7vpsf28b" path="res://gamescenes/Character_Service.gd" id="3_a2w3a"]
 [ext_resource type="Script" uid="uid://blw8c87wwfho3" path="res://scripts/player_input_listener.gd" id="3_voljf"]
+[ext_resource type="Texture2D" uid="uid://bmsjxhbth1ui1" path="res://textures/pixel_white.png" id="5_7y386"]
+[ext_resource type="Texture2D" uid="uid://bkdydimlv6gjn" path="res://textures/sand/Aerial Beach 4K.jpg" id="6_3tyq4"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_206yn"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_voljf"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_a2w3a"]
+sky_material = SubResource("ProceduralSkyMaterial_voljf")
+
+[sub_resource type="Environment" id="Environment_7y386"]
+background_mode = 2
+background_color = Color(0.7217313, 0.51583666, 0.6991796, 1)
+sky = SubResource("Sky_a2w3a")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.36402395, 0.5892134, 0.654689, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_206yn"]
+
+[sub_resource type="Gradient" id="Gradient_voljf"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a2w3a"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7y386"]
+seamless = true
+color_ramp = SubResource("Gradient_voljf")
+noise = SubResource("FastNoiseLite_a2w3a")
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_3tyq4"]
+_shader_parameters = {
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.87,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"height_blending": true,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise3_scale": 0.225,
+&"noise_texture": SubResource("NoiseTexture2D_7y386"),
+&"projection_angular_division": 2.0,
+&"projection_threshold": 0.8,
+&"world_space_normal_blend": true
+}
+world_background = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pv1x2"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_qp7x2"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_pv1x2")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_pv1x2"]
+name = "main"
+albedo_color = Color(0.87068623, 0.74670404, 0.56101316, 1)
+albedo_texture = ExtResource("5_7y386")
+normal_texture = ExtResource("6_3tyq4")
+uv_scale = 0.04
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_j6swj"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_qp7x2")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_pv1x2")])
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twul0"]
+transparency = 1
+albedo_color = Color(0.2392157, 0.57254905, 1, 0.58431375)
+roughness = 0.3
+heightmap_enabled = true
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.6
+refraction_scale = 0.02
+grow_amount = -0.573
+proximity_fade_distance = 9.1
+distance_fade_mode = 1
+distance_fade_min_distance = 824.7
+distance_fade_max_distance = 585.87
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yr8bq"]
+material = SubResource("StandardMaterial3D_twul0")
+size = Vector2(1500, 1500)
 
 [node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7y386")
 
 [node name="PlayersInputManager" type="Node3D" parent="."]
 script = ExtResource("1_ig7tw")
 
-[node name="character" parent="." instance=ExtResource("2_206yn")]
-
 [node name="player1" type="Node3D" parent="." node_paths=PackedStringArray("selected_player")]
 script = ExtResource("3_voljf")
-selected_player = NodePath("../character")
+selected_player = NodePath("../CharacterBody3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.8660254, -0.35355344, 0.35355344, 0, 0.7071068, 0.7071068, -0.50000006, -0.61237246, 0.61237246, 5.9412265, 12.245476, 9.807767)
+transform = Transform3D(0.8660254, -0.35355344, 0.35355344, 0, 0.7071068, 0.7071068, -0.50000006, -0.61237246, 0.61237246, 7, 35, 10)
 projection = 1
-size = 12.007
+size = 12.773
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.057716, 0)
+script = ExtResource("3_a2w3a")
+movement_speed = 6.0
+acceleration = 4.0
+friction = 15.0
+rotation_speed = 30.0
+
+[node name="character" parent="CharacterBody3D" instance=ExtResource("2_206yn")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9690323, 0)
+shape = SubResource("CapsuleShape3D_206yn")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+data_directory = "res://terrain"
+material = SubResource("Terrain3DMaterial_3tyq4")
+assets = SubResource("Terrain3DAssets_j6swj")
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.2578243, 0.9661918, 0, -0.9661918, 0.2578243, 0, 0, 0)
+light_energy = 1.4
+shadow_enabled = true
+directional_shadow_split_1 = 0.015
+directional_shadow_split_2 = 0.341
+directional_shadow_split_3 = 0.523
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(9.71765, 0, 0, 0, 25.434305, 0, 0, 0, 11.247122, 0, -12.749559, 0)
-mesh = SubResource("BoxMesh_206yn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6957016, 0)
+mesh = SubResource("PlaneMesh_yr8bq")

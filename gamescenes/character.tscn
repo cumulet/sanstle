@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://oea2uyph2jxn"]
+
+[ext_resource type="PackedScene" uid="uid://byk08xrugk6au" path="res://blender_files/character.fbx" id="1_glpr6"]
+[ext_resource type="Texture2D" uid="uid://wnfarr4b1y0t" path="res://textures/face_01.png" id="2_pjt0s"]
+[ext_resource type="Script" uid="uid://keokp765qpor" path="res://addons/jigglebones/jigglebone.gd" id="3_wa5vi"]
+
+[node name="character" instance=ExtResource("1_glpr6")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(-3.1671973e-07, -1.4398651e-07, 0.8661055, -0.4998612)
+bones/2/rotation = Quaternion(4.0160663e-07, -4.775748e-08, -0.5067187, 0.86211145)
+bones/3/rotation = Quaternion(-2.0942052e-08, 1.20841515e-08, 0.005318039, 0.9999859)
+bones/6/rotation = Quaternion(1.7370269e-07, -2.7863045e-08, 0.4858322, 0.8740521)
+bones/7/rotation = Quaternion(-1.2278465e-09, -7.4711075e-08, -0.0026454774, 0.99999654)
+bones/9/rotation = Quaternion(-0.018167818, 0, 0, 0.99983495)
+bones/12/rotation = Quaternion(3.1124466e-07, 1.2630548e-07, -0.59564734, 0.8032461)
+bones/13/rotation = Quaternion(2.7658887e-08, -2.522122e-08, -0.043564886, 0.9990506)
+bones/17/rotation = Quaternion(1.4491988e-07, -3.499105e-08, 0.60682535, 0.7948352)
+bones/18/rotation = Quaternion(9.078319e-09, 1.1175746e-08, 0.0340178, 0.99942124)
+
+[node name="Sphere" parent="Armature/Skeleton3D" index="0"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 1.4210855e-14, 1.0000001, -0.00018389465, -1.5928726e-05, -0.00018197659)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.018167851, -0.9998349, 0, 0.9998349, 0.018167851, 0, -1.1257258e-09, 0.009443273)
+bone_name = "Body"
+bone_idx = 9
+
+[node name="Decal" type="Decal" parent="Armature/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(-0.002874683, -2.910383e-10, -1.8189894e-12, 9.187318e-12, -0.00010533908, -0.0028727518, 2.910383e-10, -0.002872752, 0.00010533908, -8.486528e-05, 0.0037130471, -0.0047579296)
+texture_albedo = ExtResource("2_pjt0s")
+
+[node name="Jigglebone" type="Node3D" parent="Armature/Skeleton3D" index="2"]
+transform = Transform3D(100, 0, 0, 0, 99.98348, 1.8167969, 0, -1.8167969, 99.98348, 0, 0.9443271, -1)
+top_level = true
+script = ExtResource("3_wa5vi")
+bone_name = "Body"
+stiffness = 0.5
+metadata/_custom_type_script = "uid://keokp765qpor"
+
+[node name="AnimationPlayer" parent="." index="1"]
+blend_times = [&"Armature|Idle", &"Armature|Idle", 1.0, &"Armature|Idle", &"Armature|Running", 1.0, &"Armature|Idle", &"Armature|Walking", 1.0, &"Armature|Running", &"Armature|Idle", 1.0, &"Armature|Running", &"Armature|Running", 1.0, &"Armature|Running", &"Armature|Walking", 1.0, &"Armature|Walking", &"Armature|Idle", 1.0, &"Armature|Walking", &"Armature|Running", 1.0, &"Armature|Walking", &"Armature|Walking", 1.0]

@@ -10,8 +10,13 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="chato"
+run/main_scene="uid://cqow47bch5ocs"
 config/features=PackedStringArray("4.5", "Forward Plus")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/jigglebones/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [input]
 
