@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://imvi10byi1xf"]
+
+[ext_resource type="Script" uid="uid://blw8c87wwfho3" path="res://scripts/player_input_listener.gd" id="1_jn8bf"]
+
+[node name="player" type="Node3D"]
+script = ExtResource("1_jn8bf")

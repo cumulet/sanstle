@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://di6oqny537phn"]
+
+[resource]
+diffuse_mode = 1
+albedo_color = Color(0.98, 0.90862334, 0.7546, 1)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.22
+subsurf_scatter_skin_mode = true
+subsurf_scatter_transmittance_enabled = true
+subsurf_scatter_transmittance_depth = 8.0
+subsurf_scatter_transmittance_boost = 0.23
+backlight_enabled = true
+backlight = Color(0.44074076, 0.25784272, 0.03507312, 1)
