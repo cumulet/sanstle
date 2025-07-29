@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		var jump_input = Input.is_joy_button_pressed(player_index, JOY_BUTTON_A)
 		var take_input = Input.is_joy_button_pressed(player_index, JOY_BUTTON_B)
 
-		selected_player.character_movement(delta, x_input, y_input, jump_input, take_input)
+		selected_player.character_proces(delta, x_input, y_input, jump_input, take_input)
 	else:
 		var x_input_pos = 1 if Input.is_key_pressed(KEY_D) else 0
 		var x_input_neg = -1 if Input.is_key_pressed(KEY_Q) else 0
@@ -32,6 +32,5 @@ func _process(delta: float) -> void:
 		if abs(y_input) < 0.1: y_input = 0
 		
 		var jump_input = Input.is_key_pressed(KEY_SPACE)
-		var take_input = Input.is_key_pressed(KEY_E)
-
-		selected_player.character_movement(delta, x_input, y_input, jump_input, take_input)
+		var take_input = Input.is_action_just_pressed("interract")
+		selected_player.character_proces(delta, x_input, y_input, jump_input, take_input)

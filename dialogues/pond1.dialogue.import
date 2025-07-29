@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://hhjthrdw0a3o"
+path="res://.godot/imported/pond1.dialogue-39032dc404cf420e977fee91f96c887f.tres"
+
+[deps]
+
+source_file="res://dialogues/pond1.dialogue"
+dest_files=["res://.godot/imported/pond1.dialogue-39032dc404cf420e977fee91f96c887f.tres"]
+
+[params]
+
+defaults=true

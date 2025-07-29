@@ -1,2 +1,2 @@
 class_name Pickable
-extends RigidBody3D
+extends Interactable

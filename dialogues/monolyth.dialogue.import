@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dm2vuvlk6oddy"
+path="res://.godot/imported/monolyth.dialogue-fa8ffee8f0f4a325c3be87a5dee270e9.tres"
+
+[deps]
+
+source_file="res://dialogues/monolyth.dialogue"
+dest_files=["res://.godot/imported/monolyth.dialogue-fa8ffee8f0f4a325c3be87a5dee270e9.tres"]
+
+[params]
+
+defaults=true
