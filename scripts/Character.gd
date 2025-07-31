@@ -23,6 +23,8 @@ var selected_pickable : Interactable
 var _submerged : bool
 var _isJumping : bool
 var _holding : bool
+var _interacting : bool
+
 
 func addObject(body:Node3D):
 	if body is Interactable:
@@ -144,10 +146,8 @@ func _jump() -> void:
 func interact():
 	if closest_interactable != null:
 		if closest_interactable is Pickable:
-			print("pick")
 			take_object(closest_interactable)
 		if closest_interactable is DialogueStart:
-			print("dial")
 			start_dialgue(closest_interactable)
 	
 func take_object(pick:Pickable):
@@ -159,12 +159,14 @@ func take_object(pick:Pickable):
 			_holding = true;
 	else :
 		if selected_pickable != null:
-			print("release")
 			selected_pickable.reparent(get_tree().get_root())
 			selected_pickable.linear_velocity = Vector3.ZERO
 			selected_pickable = null
 			_holding = false
+			_interacting = false
 
 func start_dialgue(dial:DialogueStart):
 	dial.start_dialogue()
-	
+
+func _on_dialogue_end():
+	_interacting = false

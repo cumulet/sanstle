@@ -147,7 +147,6 @@ func _on_mutated(_mutation: Dictionary) -> void:
 	will_hide_balloon = true
 	mutation_cooldown.start(0.1)
 
-
 func _on_balloon_gui_input(event: InputEvent) -> void:
 	# See if we need to skip typing of the dialogue
 	if dialogue_label.is_typing:
@@ -169,9 +168,7 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
 
-
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
-
 
 #endregion

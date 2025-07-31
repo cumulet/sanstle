@@ -32,7 +32,6 @@ const DialogueLine = preload("./dialogue_line.gd")
 func get_next_dialogue_line(title: String = "", extra_game_states: Array = [], mutation_behaviour: DMConstants.MutationBehaviour = DMConstants.MutationBehaviour.Wait) -> DialogueLine:
 	return await Engine.get_singleton("DialogueManager").get_next_dialogue_line(self, title, extra_game_states, mutation_behaviour)
 
-
 ## Get the list of any titles found in the file.
 func get_titles() -> PackedStringArray:
 	return titles.keys()

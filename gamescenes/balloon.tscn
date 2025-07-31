@@ -1,9 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgb6rhls858v0"]
+[gd_scene load_steps=6 format=3 uid="uid://cgb6rhls858v0"]
 
 [ext_resource type="Script" uid="uid://cj1hhi4n7y4j1" path="res://scripts/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Theme" uid="uid://klemp53rww1p" path="res://gamescenes/balloon.tres" id="2_c54uj"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c54uj"]
+bg_color = Color(1, 1, 1, 1)
+border_color = Color(0.8, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 24
+corner_radius_top_right = 20
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 20
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 1
+shadow_offset = Vector2(6, 6)
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
@@ -29,6 +41,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -63.0
+offset_right = 225.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_c54uj")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Balloon"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -217.24048
 offset_top = -58.13501
 offset_right = 217.24048
@@ -37,17 +66,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Balloon/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Balloon/PanelContainer2"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/PanelContainer2/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Control" type="Control" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="Balloon/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer/Control"]
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/PanelContainer2/MarginContainer/VBoxContainer/Control"]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 0
@@ -61,7 +90,7 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer/Control" instance=ExtResource("2_a8ve6")]
+[node name="DialogueLabel" parent="Balloon/PanelContainer2/MarginContainer/VBoxContainer/Control" instance=ExtResource("2_a8ve6")]
 unique_name_in_owner = true
 layout_mode = 0
 anchors_preset = 0
@@ -71,6 +100,7 @@ offset_top = -14.86499
 offset_right = 403.08047
 offset_bottom = 35.90501
 grow_horizontal = 1
+theme = ExtResource("2_c54uj")
 text = "Dialogue..."
 autowrap_mode = 2
 
@@ -100,4 +130,5 @@ layout_mode = 2
 text = "Response example"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="finished_typing" from="Balloon/PanelContainer2/MarginContainer/VBoxContainer/Control/DialogueLabel" to="." method="_on_end_dialogue"]
 [connection signal="response_selected" from="Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
