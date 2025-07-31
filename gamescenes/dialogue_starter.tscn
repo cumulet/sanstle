@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpappp2a8kdwh" path="res://scripts/DialogueStart_Collision.gd" id="1_ery6d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ekwan"]
-size = Vector3(29.583084, 1.9853516, 4.048828)
+size = Vector3(29.583084, 1.9853516, 2.4873047)
 
 [node name="DialogueStarter" type="Area3D"]
 collision_mask = 3
