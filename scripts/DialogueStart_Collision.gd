@@ -3,9 +3,12 @@ extends Node3D
 @onready var dialogue_baloon: CustomDialogue = $"../dialogue_baloon"
 const BALLOON = preload("res://gamescenes/balloon.tscn")
 
+var _started : bool
 var _current_baloon : CustomDialogue
 
 func start_dialogue():
+	if _started: return
+	_started=true
 	_current_baloon = BALLOON.instantiate()
 	get_tree().root.add_child(_current_baloon)
 	_current_baloon.start(dialogue_resource, "start")
@@ -18,7 +21,6 @@ func remove_dialogue():
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D:
 		start_dialogue()
-
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body is CharacterBody3D:

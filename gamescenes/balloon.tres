@@ -1,7 +1,14 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://klemp53rww1p"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://klemp53rww1p"]
 
 [ext_resource type="StyleBox" uid="uid://dbpu5nqbmb1kl" path="res://gamescenes/custom_text_ballon.tres" id="1_agt07"]
+[ext_resource type="FontFile" uid="uid://c7lh4tbvtgkav" path="res://fonts/bianzhidai-Base.otf" id="2_qt3fe"]
 
 [resource]
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
 PanelContainer/styles/panel = ExtResource("1_agt07")
-RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/default_color = Color(0.16483107, 0.15184994, 0.100119665, 1)
+RichTextLabel/font_sizes/normal_font_size = 32
+RichTextLabel/fonts/normal_font = ExtResource("2_qt3fe")

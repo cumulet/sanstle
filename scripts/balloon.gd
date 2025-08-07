@@ -44,10 +44,10 @@ var mutation_cooldown: Timer = Timer.new()
 @onready var balloon: Control = %Balloon
 
 ## The label showing the name of the currently speaking character
-@onready var character_label: RichTextLabel = %CharacterLabel
+@onready var character_label: RichTextLabel = $Balloon/PanelContainer/MarginContainer/VBoxContainer/CharacterLabel
 
 ## The label showing the currently spoken dialogue
-@onready var dialogue_label: DialogueLabel = %DialogueLabel
+@onready var dialogue_label: DialogueLabel = $Balloon/PanelContainer/MarginContainer/VBoxContainer/DialogueLabel
 
 ## The menu of responses
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu

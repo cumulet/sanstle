@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://jmfpvlut4vdw"
+path="res://.godot/imported/pickable.dialogue-0ad498eaf3129c89e5a2b89ddcb0204d.tres"
+
+[deps]
+
+source_file="res://dialogues/pickable.dialogue"
+dest_files=["res://.godot/imported/pickable.dialogue-0ad498eaf3129c89e5a2b89ddcb0204d.tres"]
+
+[params]
+
+defaults=true

@@ -12,11 +12,12 @@ extends CharacterBody3D
 @export var grabbed_object_offset : Vector3 = Vector3(0,1,-.7)
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var camera_3d: Camera3D = $"../Camera3D"
-@onready var water: MeshInstance3D = $"../water"
+@onready var water: MeshInstance3D = $"../islandmap/water"
 
 @onready var watersplash: CPUParticles3D = $vfx/watersplash
 
 @export var interactables : Array[Interactable] 
+var previous_closest_interactable: Interactable = null
 var closest_interactable : Interactable
 var selected_pickable : Interactable
 
@@ -24,7 +25,6 @@ var _submerged : bool
 var _isJumping : bool
 var _holding : bool
 var _interacting : bool
-
 
 func addObject(body:Node3D):
 	if body is Interactable:
@@ -35,13 +35,24 @@ func removeObject(body:Node3D):
 		interactables.remove_at(interactables.find(body))
 
 func _process(_delta: float) -> void:
-	closest_interactable = get_closest_pickable() 
+	var new_closest = get_closest_pickable()
+	
+	if new_closest != closest_interactable:
+		if is_instance_valid(closest_interactable):
+			closest_interactable.hide_ui()
+		
+		closest_interactable = new_closest
+
+		if !_interacting:
+			if is_instance_valid(closest_interactable):
+				closest_interactable.show_ui()
 
 func _physics_process(_delta):
 	flotte()
 
 func flotte():
 	_submerged = false
+	if water == null: return
 	var depth = (water.global_position.y - water_depth_offset) - global_position.y 
 	if depth > 0:
 		if velocity.y < -5 : watersplash.emitting = true
@@ -145,28 +156,9 @@ func _jump() -> void:
 
 func interact():
 	if closest_interactable != null:
-		if closest_interactable is Pickable:
-			take_object(closest_interactable)
-		if closest_interactable is DialogueStart:
-			start_dialgue(closest_interactable)
-	
-func take_object(pick:Pickable):
-	if !_holding:
-		if selected_pickable == null:
-			selected_pickable = pick
-			selected_pickable.reparent(self)
-			selected_pickable.position = grabbed_object_offset
-			_holding = true;
-	else :
-		if selected_pickable != null:
-			selected_pickable.reparent(get_tree().get_root())
-			selected_pickable.linear_velocity = Vector3.ZERO
-			selected_pickable = null
-			_holding = false
-			_interacting = false
-
-func start_dialgue(dial:DialogueStart):
-	dial.start_dialogue()
+		_interacting = true
+		closest_interactable.hide_ui()
+		closest_interactable.interact(self)
 
 func _on_dialogue_end():
 	_interacting = false

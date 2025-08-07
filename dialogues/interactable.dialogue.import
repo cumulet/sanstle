@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c8g4jlj00yqvb"
+path="res://.godot/imported/interactable.dialogue-181853104f18fae05db8487fe3e0ff5b.tres"
+
+[deps]
+
+source_file="res://dialogues/interactable.dialogue"
+dest_files=["res://.godot/imported/interactable.dialogue-181853104f18fae05db8487fe3e0ff5b.tres"]
+
+[params]
+
+defaults=true

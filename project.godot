@@ -55,7 +55,7 @@ interract={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/pond1.dialogue", "res://dialogues/monolyth.dialogue", "res://dialogues/first_beach.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/parents.dialogue", "res://dialogues/hot_water.dialogue", "res://dialogues/pickable.dialogue", "res://dialogues/talkable.dialogue", "res://dialogues/interactable.dialogue")
 
 [layer_names]
 

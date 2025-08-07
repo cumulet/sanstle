@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dk4gi1feg03x5"
+path="res://.godot/imported/talkable.dialogue-fa78a6a6f54749db1f3cb807fa479ca8.tres"
+
+[deps]
+
+source_file="res://dialogues/talkable.dialogue"
+dest_files=["res://.godot/imported/talkable.dialogue-fa78a6a6f54749db1f3cb807fa479ca8.tres"]
+
+[params]
+
+defaults=true

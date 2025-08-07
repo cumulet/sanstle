@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bst0mksyq2vso"
+path="res://.godot/imported/hot_water.dialogue-2df0514969ef2a2037e57ee8e5c83a5f.tres"
+
+[deps]
+
+source_file="res://dialogues/hot_water.dialogue"
+dest_files=["res://.godot/imported/hot_water.dialogue-2df0514969ef2a2037e57ee8e5c83a5f.tres"]
+
+[params]
+
+defaults=true
