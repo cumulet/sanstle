@@ -2,6 +2,7 @@ class_name Pickable
 extends Interactable
 
 func interact(parent:Node3D = null):
+	super.interact(parent)
 	if parent != null:
 		if parent is Character:
 			if !parent._holding:

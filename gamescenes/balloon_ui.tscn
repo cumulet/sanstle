@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d2fftv85mgtvb"]
+[gd_scene load_steps=6 format=3 uid="uid://d2fftv85mgtvb"]
 
 [ext_resource type="Script" uid="uid://cj1hhi4n7y4j1" path="res://scripts/balloon.gd" id="1_5ura7"]
 [ext_resource type="Theme" uid="uid://klemp53rww1p" path="res://gamescenes/balloon.tres" id="2_omhjh"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="3_bwwyl"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="4_dj007"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ura7"]
+bg_color = Color(0.03350582, 0.023146326, 0.018769396, 1)
+shadow_color = Color(0.84637916, 0.73840547, 0.67569315, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
@@ -27,13 +33,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -312.0
+offset_left = -190.65991
 offset_top = -122.0
-offset_right = 311.3401
+offset_right = 190.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ura7")
 
 [node name="MarginContainer" type="MarginContainer" parent="Balloon/PanelContainer"]
 layout_mode = 2
@@ -52,10 +59,15 @@ fit_content = true
 scroll_active = false
 
 [node name="DialogueLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bwwyl")]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.9190049, 0.9074567, 0.8558066, 1)
 text = "Dialogue..."
 autowrap_mode = 2
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b3hnckcbmp5hr"
+path="res://.godot/imported/relax.dialogue-023aa1e8ae21ca9ba508aed1a74324c1.tres"
+
+[deps]
+
+source_file="res://dialogues/relax.dialogue"
+dest_files=["res://.godot/imported/relax.dialogue-023aa1e8ae21ca9ba508aed1a74324c1.tres"]
+
+[params]
+
+defaults=true

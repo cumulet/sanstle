@@ -25,7 +25,7 @@ var _submerged : bool
 var _isJumping : bool
 var _holding : bool
 var _interacting : bool
-
+	
 func addObject(body:Node3D):
 	if body is Interactable:
 		interactables.append(body)
@@ -35,17 +35,18 @@ func removeObject(body:Node3D):
 		interactables.remove_at(interactables.find(body))
 
 func _process(_delta: float) -> void:
-	var new_closest = get_closest_pickable()
+	closest_interactable = get_closest_interactable()
 	
-	if new_closest != closest_interactable:
-		if is_instance_valid(closest_interactable):
-			closest_interactable.hide_ui()
-		
-		closest_interactable = new_closest
-
+	if closest_interactable != null:
 		if !_interacting:
-			if is_instance_valid(closest_interactable):
-				closest_interactable.show_ui()
+			closest_interactable.is_closest()
+	
+	if closest_interactable == null && previous_closest_interactable != null:
+		previous_closest_interactable.is_not_closest()
+	if previous_closest_interactable != null && previous_closest_interactable != closest_interactable:
+		previous_closest_interactable.is_not_closest()
+	
+	previous_closest_interactable = closest_interactable
 
 func _physics_process(_delta):
 	flotte()
@@ -61,7 +62,7 @@ func flotte():
 		velocity *=  1 - water_drag
 		velocity += Vector3.UP *.1 * 9.81 * depth
 
-func get_closest_pickable(max_angle: float = 45.0) -> Pickable:
+func get_closest_interactable(max_angle: float = 45.0) -> Interactable:
 	if interactables.is_empty():
 		return null
 	
@@ -73,22 +74,22 @@ func get_closest_pickable(max_angle: float = 45.0) -> Pickable:
 	forward.y = 0
 	forward = forward.normalized()
 
-	for p in interactables:
-		if not is_instance_valid(p):
+	for i in interactables:
+		if not is_instance_valid(i):
 			continue
 
-		var to_pickable = (p.global_position - global_position)
-		to_pickable.y = 0 # ignore vertical offset for angle
-		to_pickable = to_pickable.normalized()
+		var to_interactable = (i.global_position - global_position)
+		to_interactable.y = 0 # ignore vertical offset for angle
+		to_interactable = to_interactable.normalized()
 
-		# Calculate angle between forward and the vector to the pickable
-		var angle_deg = rad_to_deg(forward.angle_to(to_pickable))
+		# Calculate angle between forward and the vector to the interactable
+		var angle_deg = rad_to_deg(forward.angle_to(to_interactable))
 
 		if angle_deg <= max_angle:
-			var dist = global_position.distance_to(p.global_position)
+			var dist = global_position.distance_to(i.global_position)
 			if dist < closest_dist:
 				closest_dist = dist
-				closest = p
+				closest = i
 
 	return closest
 	
@@ -105,6 +106,8 @@ func character_proces(delta:float,x_input:float, y_input:float, jump_input:float
 	
 	if take_input>0.1:
 		interact()
+	else:
+		_interacting_end()
 		
 	if x_input == 0 and y_input == 0:
 		# slow down
@@ -157,8 +160,8 @@ func _jump() -> void:
 func interact():
 	if closest_interactable != null:
 		_interacting = true
-		closest_interactable.hide_ui()
 		closest_interactable.interact(self)
 
-func _on_dialogue_end():
+func _interacting_end():
+	if _holding: return
 	_interacting = false

@@ -8,27 +8,33 @@ extends RigidBody3D
 
 const BALLOON_UI = preload("uid://d2fftv85mgtvb")
 
-signal is_interacting
-signal is_not_interacting
 var _submerged : bool
+var _dialogue_lock : bool
 var _current_baloon_ui : CustomDialogue
+var done : bool
 
+@export var closest : bool
+
+func is_closest():
+	if !closest:
+		closest = true
+		if done : return
+		show_ui() 
+
+func is_not_closest():
+	if closest:
+		closest = false
+		hide_ui()
+		
 func interact(parent:Node3D = null):
 	hide_ui()
 
 func show_ui():
-	start_dialogue()
+	_current_baloon_ui = BALLOON_UI.instantiate()
+	get_tree().root.add_child(_current_baloon_ui)
+	_current_baloon_ui.start(ui_text, "start")
 
 func hide_ui():
-	remove_dialogue()
-
-func start_dialogue():
-		remove_dialogue()
-		_current_baloon_ui = BALLOON_UI.instantiate()
-		get_tree().root.add_child(_current_baloon_ui)
-		_current_baloon_ui.start(ui_text, "start")
-
-func remove_dialogue():
 	if _current_baloon_ui != null:
 		_current_baloon_ui.queue_free()
 		_current_baloon_ui = null

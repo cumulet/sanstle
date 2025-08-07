@@ -1,6 +1,5 @@
 extends Node3D
 @export var dialogue_resource: DialogueResource
-@onready var dialogue_baloon: CustomDialogue = $"../dialogue_baloon"
 const BALLOON = preload("res://gamescenes/balloon.tscn")
 
 var _started : bool
