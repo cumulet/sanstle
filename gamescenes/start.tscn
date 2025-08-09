@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://8wuj3x835bh6"]
+
+[ext_resource type="PackedScene" uid="uid://cconw1yn8v7de" path="res://blender_files/plane.blend" id="1_s5iox"]
+
+[sub_resource type="Environment" id="Environment_ecj4t"]
+background_mode = 1
+background_color = Color(0.68916076, 0.8645274, 0.94269896, 1)
+ambient_light_energy = 0.48
+
+[sub_resource type="BoxMesh" id="BoxMesh_7lx88"]
+
+[node name="Start" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.11965167, 0, 0.992816, 0, 1, 0, -0.992816, 0, -0.11965167, 3.930449, 0.33214298, -2.3325057)
+fov = 20.114178
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ecj4t")
+
+[node name="plane" parent="." instance=ExtResource("1_s5iox")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.7890987, 0, 0, 0, 1, 0, 0, 0, 13.349149, 3.5542216, 1.9088588, -3.4058993)
+mesh = SubResource("BoxMesh_7lx88")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.3951483, 0.8783427, -0.2690207, -0.91196275, 0.41027328, 0, 0.11037198, 0.2453368, 0.9631344, -2.2788026, 0, 0)
+shadow_enabled = true

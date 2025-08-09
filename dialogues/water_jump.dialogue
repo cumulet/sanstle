@@ -1,0 +1,6 @@
+~ start
+parent: [shake rate=20.0 level=5 connected=1]don't even think about it![/shake]
+parent: first of all falling from this height will hurt you.
+parent: you don't know what [wave amp=50.0 freq=5.0 connected=1]under the water![/wave]
+parent: don't you dare jumping...
+=> END

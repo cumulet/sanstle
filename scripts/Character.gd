@@ -62,7 +62,7 @@ func flotte():
 		velocity *=  1 - water_drag
 		velocity += Vector3.UP *.1 * 9.81 * depth
 
-func get_closest_interactable(max_angle: float = 45.0) -> Interactable:
+func get_closest_interactable(max_angle: float = 60.0) -> Interactable:
 	if interactables.is_empty():
 		return null
 	
@@ -142,7 +142,10 @@ func character_proces(delta:float,x_input:float, y_input:float, jump_input:float
 		if _submerged:
 			animation_player.play("Swimming")
 		else:
-			animation_player.play("Running")
+			if velocity.y < -1 || velocity.y > 1:
+				animation_player.play("Idle")
+			else:
+				animation_player.play("Running")
 
 	# 6) Smoothly rotate yaw toward movement direction
 	var current_yaw = rotation.y
