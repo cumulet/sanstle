@@ -10,9 +10,10 @@ extends CharacterBody3D
 @export var water_drag := 0.05
 @export var water_depth_offset := .2
 @export var grabbed_object_offset : Vector3 = Vector3(0,1,-.7)
+@export var water: MeshInstance3D
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var camera_3d: Camera3D = $"../Camera3D"
-@onready var water: MeshInstance3D = $"../islandmap/water"
+
 
 @onready var watersplash: CPUParticles3D = $vfx/watersplash
 
@@ -62,7 +63,7 @@ func flotte():
 		velocity *=  1 - water_drag
 		velocity += Vector3.UP *.1 * 9.81 * depth
 
-func get_closest_interactable(max_angle: float = 60.0) -> Interactable:
+func get_closest_interactable(max_angle: float = 90.0) -> Interactable:
 	if interactables.is_empty():
 		return null
 	

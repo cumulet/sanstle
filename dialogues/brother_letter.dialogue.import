@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cdhfo2wuorqeh"
+path="res://.godot/imported/brother_letter.dialogue-f4de052216e25451c18ca62d1cb25ee9.tres"
+
+[deps]
+
+source_file="res://dialogues/brother_letter.dialogue"
+dest_files=["res://.godot/imported/brother_letter.dialogue-f4de052216e25451c18ca62d1cb25ee9.tres"]
+
+[params]
+
+defaults=true

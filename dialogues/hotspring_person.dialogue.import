@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://76wm52twbyo3"
+path="res://.godot/imported/hotspring_person.dialogue-03821a9b98bf892a9d295525b2954ccf.tres"
+
+[deps]
+
+source_file="res://dialogues/hotspring_person.dialogue"
+dest_files=["res://.godot/imported/hotspring_person.dialogue-03821a9b98bf892a9d295525b2954ccf.tres"]
+
+[params]
+
+defaults=true

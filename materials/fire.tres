@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dfsoq5rrkqy0n"]
+
+[ext_resource type="Shader" uid="uid://bknbq2gktn6x8" path="res://shaders/flame.tres" id="1_ne1xg"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_62wt2"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vcum8"]
+noise = SubResource("FastNoiseLite_62wt2")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ne1xg")
+shader_parameter/min_max_smoothstep_fire_mask = Vector2(0, 1.58)
+shader_parameter/alpha_texture_smoothstep = Vector2(0, 1)
+shader_parameter/Texture2DParameter = SubResource("NoiseTexture2D_vcum8")
+shader_parameter/proximity_fade_dist = 0.05999999999767169

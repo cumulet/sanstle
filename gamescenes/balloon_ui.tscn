@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ura7"]
 bg_color = Color(0.03350582, 0.023146326, 0.018769396, 1)
-shadow_color = Color(0.84637916, 0.73840547, 0.67569315, 1)
+shadow_color = Color(1, 1, 1, 1)
 shadow_size = 1
 shadow_offset = Vector2(10, 10)
 
@@ -15,17 +15,45 @@ shadow_offset = Vector2(10, 10)
 layer = 100
 script = ExtResource("1_5ura7")
 
-[node name="Balloon" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 3
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Balloon" type="Control" parent="AspectRatioContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 theme = ExtResource("2_omhjh")
 
-[node name="PanelContainer" type="PanelContainer" parent="Balloon"]
+[node name="DialogueLabel2" type="RichTextLabel" parent="AspectRatioContainer/Balloon"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 0
+offset_left = 143.0
+offset_top = 469.0
+offset_right = 503.0
+offset_bottom = 535.23
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0] press e to [/pulse]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/Balloon"]
 clip_children = 2
 layout_mode = 1
 anchors_preset = 7
@@ -42,13 +70,13 @@ grow_vertical = 0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_5ura7")
 
-[node name="MarginContainer" type="MarginContainer" parent="Balloon/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/Balloon/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer/Balloon/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CharacterLabel" type="RichTextLabel" parent="AspectRatioContainer/Balloon/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
 modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 2
@@ -58,18 +86,18 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bwwyl")]
+[node name="DialogueLabel" parent="AspectRatioContainer/Balloon/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bwwyl")]
 clip_contents = false
 custom_minimum_size = Vector2(0, 66.23)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.9190049, 0.9074567, 0.8558066, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 text = "Dialogue..."
 autowrap_mode = 2
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
+[node name="ResponsesMenu" type="VBoxContainer" parent="AspectRatioContainer/Balloon" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -90,10 +118,10 @@ alignment = 1
 script = ExtResource("4_dj007")
 response_template = NodePath("ResponseExample")
 
-[node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
+[node name="ResponseExample" type="Button" parent="AspectRatioContainer/Balloon/ResponsesMenu"]
 layout_mode = 2
 text = "Response example"
 
-[connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
-[connection signal="finished_typing" from="Balloon/PanelContainer/MarginContainer/VBoxContainer/DialogueLabel" to="." method="_on_end_dialogue"]
-[connection signal="response_selected" from="Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
+[connection signal="gui_input" from="AspectRatioContainer/Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="finished_typing" from="AspectRatioContainer/Balloon/PanelContainer/MarginContainer/VBoxContainer/DialogueLabel" to="." method="_on_end_dialogue"]
+[connection signal="response_selected" from="AspectRatioContainer/Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

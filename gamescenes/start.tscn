@@ -1,29 +1,274 @@
-[gd_scene load_steps=4 format=3 uid="uid://8wuj3x835bh6"]
+[gd_scene load_steps=15 format=3 uid="uid://8wuj3x835bh6"]
 
+[ext_resource type="Script" uid="uid://dy37t3d8ccf4t" path="res://gamescenes/start.gd" id="1_4dt6i"]
+[ext_resource type="Material" uid="uid://m80rmki4fbox" path="res://sky/sky/examples/night_sky.tres" id="1_7lx88"]
+[ext_resource type="Theme" uid="uid://klemp53rww1p" path="res://gamescenes/balloon.tres" id="1_c4qo1"]
 [ext_resource type="PackedScene" uid="uid://cconw1yn8v7de" path="res://blender_files/plane.blend" id="1_s5iox"]
+[ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="2_4dt6i"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_wvoel"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_43h4b"]
+[ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="5_c4qo1"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_4dt6i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ura7"]
+bg_color = Color(0.03350582, 0.023146326, 0.018769396, 1)
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
+
+[sub_resource type="Sky" id="Sky_43h4b"]
+sky_material = ExtResource("1_7lx88")
 
 [sub_resource type="Environment" id="Environment_ecj4t"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.68916076, 0.8645274, 0.94269896, 1)
+sky = SubResource("Sky_43h4b")
+sky_rotation = Vector3(0, -1.8849556, 3.1415927)
 ambient_light_energy = 0.48
+fog_light_color = Color(0.68765086, 0.82091546, 0.8012791, 1)
+fog_sky_affect = 0.3
+fog_height_density = 5.3112
 
-[sub_resource type="BoxMesh" id="BoxMesh_7lx88"]
+[sub_resource type="Resource" id="Resource_10ex8"]
+script = ExtResource("4_43h4b")
+
+[sub_resource type="Resource" id="Resource_dcs56"]
+script = ExtResource("5_c4qo1")
+amplitude = 2.388
+frequency = 0.17400000000000002
+randomize_noise_seed = 1
+metadata/_custom_type_script = "uid://cuffvge5ad4aa"
 
 [node name="Start" type="Node3D"]
+script = ExtResource("1_4dt6i")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.11965167, 0, 0.992816, 0, 1, 0, -0.992816, 0, -0.11965167, 3.930449, 0.33214298, -2.3325057)
-fov = 20.114178
+[node name="ExampleBalloon" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Balloon" type="Control" parent="ExampleBalloon"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c4qo1")
+
+[node name="DialogueLabel3" type="RichTextLabel" parent="ExampleBalloon/Balloon"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 157.0
+grow_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 152
+bbcode_enabled = true
+text = "[wave]disventurism[/wave]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="DialogueLabel2" type="RichTextLabel" parent="ExampleBalloon/Balloon"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 153.0
+grow_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 152
+bbcode_enabled = true
+text = "[wave amp=70.0 freq=3 connected=1]disventurism[/wave]"
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="ExampleBalloon/Balloon"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -255.0
+offset_top = -124.0
+offset_right = 255.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ura7")
+
+[node name="MarginContainer" type="MarginContainer" parent="ExampleBalloon/Balloon/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExampleBalloon/Balloon/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CharacterLabel" type="RichTextLabel" parent="ExampleBalloon/Balloon/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "Character"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueLabel" type="RichTextLabel" parent="ExampleBalloon/Balloon/PanelContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]press any button to land [/pulse]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="ExampleBalloon/Balloon" node_paths=PackedStringArray("response_template")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.5
+offset_top = -35.0
+offset_right = 290.5
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 2
+alignment = 1
+script = ExtResource("2_4dt6i")
+response_template = NodePath("ResponseExample")
+
+[node name="ResponseExample" type="Button" parent="ExampleBalloon/Balloon/ResponsesMenu"]
+layout_mode = 2
+text = "Response example"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ecj4t")
 
-[node name="plane" parent="." instance=ExtResource("1_s5iox")]
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(7.7890987, 0, 0, 0, 1, 0, 0, 0, 13.349149, 3.5542216, 1.9088588, -3.4058993)
-mesh = SubResource("BoxMesh_7lx88")
+[node name="plane2" parent="Node3D" instance=ExtResource("1_s5iox")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.3951483, 0.8783427, -0.2690207, -0.91196275, 0.41027328, 0, 0.11037198, 0.2453368, 0.9631344, -2.2788026, 0, 0)
+[node name="Cube_001" parent="Node3D/plane2" index="1"]
+transform = Transform3D(1.78, 0, 0, 0, 1.78, 0, 0, 0, 1.78, 0, 0, 0)
+
+[node name="Cube_002" parent="Node3D/plane2" index="2"]
+transform = Transform3D(0.27149174, 0, 0, 0, 1, 0, -1.7763568e-15, 0, 0.89264506, 0, -0.031590104, 0)
+
+[node name="Cylinder" parent="Node3D/plane2" index="3"]
+transform = Transform3D(1.7799999, 0, 0, 0, -1.1116011e-07, -1.78, 0, 2.543047, -7.780627e-08, -8.217, -3.783, 2.523)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(0.9583583, -0.27132216, 0.08907179, 0.015367279, 0.36045745, 0.9326491, -0.28515494, -0.8924432, 0.3496168, -2.2788026, 0, 0)
 shadow_enabled = true
+
+[node name="PhantomCamera3D" type="Node3D" parent="Node3D"]
+transform = Transform3D(-0.0055600405, 0, 0.99998456, 0, 1, 0, -0.99998456, 0, -0.0055600405, 0.898, 0.426, -1.9945444)
+script = ExtResource("3_wvoel")
+tween_resource = SubResource("Resource_10ex8")
+noise = SubResource("Resource_dcs56")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c4qo1")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.10645046, 0.1404602, 0.2062685, 1)
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -761.0
+offset_top = -256.0
+offset_right = 761.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="Control/Panel/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1522, 512)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Control/Panel/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.01084983, -0.0045488486, -0.9999308, 0.0053119175, 0.9999758, -0.0044914153, 0.9999271, -0.0052628196, 0.01087373, -0.8979998, 0.426, 1.9945445)
+fov = 67.20268
+
+[node name="PhantomCameraHost" type="Node" parent="Control/Panel/SubViewportContainer/SubViewport/Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("6_4dt6i")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[connection signal="gui_input" from="ExampleBalloon/Balloon" to="ExampleBalloon" method="_on_balloon_gui_input"]
+[connection signal="response_selected" from="ExampleBalloon/Balloon/ResponsesMenu" to="ExampleBalloon" method="_on_responses_menu_response_selected"]
+
+[editable path="Node3D/plane2"]

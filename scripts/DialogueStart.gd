@@ -19,6 +19,7 @@ func start_dialogue():
 		if _current_baloon != null: return
 		if _dialogue_lock: return
 		
+		_dialogue_open = true
 		_current_baloon = BALLOON.instantiate()
 		get_tree().root.add_child(_current_baloon)
 		_current_baloon.start(dialogue_resource, "start")
@@ -28,5 +29,10 @@ func remove_dialogue(resource: DialogueResource):
 		_current_baloon.queue_free()
 		_current_baloon = null
 		_dialogue_lock = true
+		_dialogue_open = false
 		await get_tree().create_timer(.2).timeout
 		_dialogue_lock = false
+
+func show_ui():
+	if !_dialogue_open:
+		super.show_ui()
