@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bs0jiulefe00n"
+path="res://.godot/imported/S mb-tch-kch 2 033 by batchku.mp3-6e8201d9f9785b990bf1bfa9f9b07fa5.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/S mb-tch-kch 2 033 by batchku.mp3"
+dest_files=["res://.godot/imported/S mb-tch-kch 2 033 by batchku.mp3-6e8201d9f9785b990bf1bfa9f9b07fa5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

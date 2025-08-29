@@ -16,6 +16,7 @@ var _submerged : bool
 var _dialogue_lock : bool
 var _current_baloon_ui : CustomDialogue
 var done : bool
+var fire_is_out: bool
 
 func _ready() -> void:
 	if ignited:
@@ -54,6 +55,7 @@ func hide_ui():
 func _ignite():
 	if fire.size() <= 0: return
 	ignited = true
+	fire_is_out = false
 	for p in fire:
 		if p is CPUParticles3D:
 			p.visible = true
@@ -63,11 +65,15 @@ func _ignite():
 
 func _fire_out():
 	if fire.size() <= 0: return
+	if fire_is_out: return;
+	fire_is_out = true
 	ignited = false
 	for p in fire:
 		if p is CPUParticles3D:
 			p.visible = false
 			p.emitting = false
+		elif p is AudioStreamPlayer3D:
+			p.play()
 		else:
 			p.visible = false
 

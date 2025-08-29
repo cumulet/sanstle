@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8t2rrhboxbsy"
+path="res://.godot/imported/Dive Jump to Water by YleArkisto.mp3-93cde7bc6cfb602a4c6904301f989224.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/Dive Jump to Water by YleArkisto.mp3"
+dest_files=["res://.godot/imported/Dive Jump to Water by YleArkisto.mp3-93cde7bc6cfb602a4c6904301f989224.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://byedrwc10mtq2"
+path="res://.godot/imported/swim bt gt.mp3-1a67621496112b6669bd1cd2f38b6661.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/swim bt gt.mp3"
+dest_files=["res://.godot/imported/swim bt gt.mp3-1a67621496112b6669bd1cd2f38b6661.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

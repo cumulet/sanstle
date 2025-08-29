@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://8wuj3x835bh6"]
+[gd_scene load_steps=22 format=3 uid="uid://8wuj3x835bh6"]
 
 [ext_resource type="Script" uid="uid://dy37t3d8ccf4t" path="res://gamescenes/start.gd" id="1_4dt6i"]
 [ext_resource type="Material" uid="uid://m80rmki4fbox" path="res://sky/sky/examples/night_sky.tres" id="1_7lx88"]
@@ -9,12 +9,9 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_43h4b"]
 [ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="5_c4qo1"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_4dt6i"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ura7"]
-bg_color = Color(0.03350582, 0.023146326, 0.018769396, 1)
-shadow_color = Color(1, 1, 1, 1)
-shadow_size = 1
-shadow_offset = Vector2(10, 10)
+[ext_resource type="AudioStream" uid="uid://con758wrya55a" path="res://sound/sfx/Airplane Seatbelt Sign Beep.mp3" id="9_dcs56"]
+[ext_resource type="AudioStream" uid="uid://u83bfui7lmw1" path="res://sound/sfx/737 Plane Flight Passenger Cabin.mp3" id="10_10ex8"]
+[ext_resource type="Script" uid="uid://c5xb8xie7fqkj" path="res://scripts/custom_audio.gd" id="10_dcs56"]
 
 [sub_resource type="Sky" id="Sky_43h4b"]
 sky_material = ExtResource("1_7lx88")
@@ -39,149 +36,69 @@ frequency = 0.17400000000000002
 randomize_noise_seed = 1
 metadata/_custom_type_script = "uid://cuffvge5ad4aa"
 
+[sub_resource type="Animation" id="Animation_ncte3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.109199986, 0.1428, 0.21, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1whxb"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.109199986, 0.1428, 0.21, 0), Color(0.109199986, 0.1428, 0.21, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_d46bq"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.109199986, 0.1428, 0.21, 1), Color(0.109199986, 0.1428, 0.21, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sc0n7"]
+_data = {
+&"RESET": SubResource("Animation_ncte3"),
+&"fade_in": SubResource("Animation_d46bq"),
+&"fade_out": SubResource("Animation_1whxb")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ura7"]
+bg_color = Color(0.03350582, 0.023146326, 0.018769396, 1)
+shadow_color = Color(1, 1, 1, 1)
+shadow_size = 1
+shadow_offset = Vector2(10, 10)
+
 [node name="Start" type="Node3D"]
 script = ExtResource("1_4dt6i")
 
 [node name="ExampleBalloon" type="CanvasLayer" parent="."]
 layer = 100
-
-[node name="Balloon" type="Control" parent="ExampleBalloon"]
-unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_c4qo1")
-
-[node name="DialogueLabel3" type="RichTextLabel" parent="ExampleBalloon/Balloon"]
-clip_contents = false
-custom_minimum_size = Vector2(0, 66.23)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 6.0
-offset_top = 4.0
-offset_right = 6.0
-offset_bottom = 157.0
-grow_horizontal = 2
-size_flags_vertical = 3
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 152
-bbcode_enabled = true
-text = "[wave]disventurism[/wave]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 2
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-meta_underlined = false
-hint_underlined = false
-deselect_on_focus_loss_enabled = false
-visible_characters_behavior = 1
-
-[node name="DialogueLabel2" type="RichTextLabel" parent="ExampleBalloon/Balloon"]
-clip_contents = false
-custom_minimum_size = Vector2(0, 66.23)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 153.0
-grow_horizontal = 2
-size_flags_vertical = 3
-mouse_filter = 1
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/normal_font_size = 152
-bbcode_enabled = true
-text = "[wave amp=70.0 freq=3 connected=1]disventurism[/wave]"
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-meta_underlined = false
-hint_underlined = false
-deselect_on_focus_loss_enabled = false
-visible_characters_behavior = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="ExampleBalloon/Balloon"]
-clip_children = 2
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -255.0
-offset_top = -124.0
-offset_right = 255.0
-offset_bottom = -34.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_5ura7")
-
-[node name="MarginContainer" type="MarginContainer" parent="ExampleBalloon/Balloon/PanelContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ExampleBalloon/Balloon/PanelContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="CharacterLabel" type="RichTextLabel" parent="ExampleBalloon/Balloon/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-modulate = Color(1, 1, 1, 0.501961)
-layout_mode = 2
-mouse_filter = 1
-bbcode_enabled = true
-text = "Character"
-fit_content = true
-scroll_active = false
-
-[node name="DialogueLabel" type="RichTextLabel" parent="ExampleBalloon/Balloon/PanelContainer/MarginContainer/VBoxContainer"]
-clip_contents = false
-custom_minimum_size = Vector2(0, 66.23)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 1
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]press any button to land [/pulse]"
-fit_content = true
-scroll_active = false
-autowrap_mode = 2
-shortcut_keys_enabled = false
-horizontal_alignment = 1
-vertical_alignment = 1
-meta_underlined = false
-hint_underlined = false
-deselect_on_focus_loss_enabled = false
-visible_characters_behavior = 1
-
-[node name="ResponsesMenu" type="VBoxContainer" parent="ExampleBalloon/Balloon" node_paths=PackedStringArray("response_template")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -290.5
-offset_top = -35.0
-offset_right = 290.5
-offset_bottom = 35.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-theme_override_constants/separation = 2
-alignment = 1
-script = ExtResource("2_4dt6i")
-response_template = NodePath("ResponseExample")
-
-[node name="ResponseExample" type="Button" parent="ExampleBalloon/Balloon/ResponsesMenu"]
-layout_mode = 2
-text = "Response example"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ecj4t")
@@ -210,6 +127,16 @@ script = ExtResource("3_wvoel")
 tween_resource = SubResource("Resource_10ex8")
 noise = SubResource("Resource_dcs56")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="AirplaneAmbiance" type="AudioStreamPlayer" parent="Node3D"]
+stream = ExtResource("10_10ex8")
+volume_db = -10.0
+autoplay = true
+script = ExtResource("10_dcs56")
+fade_start = true
+
+[node name="AirplaneSeatbeltSignBeep" type="AudioStreamPlayer" parent="Node3D"]
+stream = ExtResource("9_dcs56")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -259,7 +186,7 @@ size = Vector2i(1522, 512)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Control/Panel/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.01084983, -0.0045488486, -0.9999308, 0.0053119175, 0.9999758, -0.0044914153, 0.9999271, -0.0052628196, 0.01087373, -0.8979998, 0.426, 1.9945445)
+transform = Transform3D(0.0065771258, -0.0031633778, -0.9999734, 0.011867072, 0.99992484, -0.0030851706, 0.999908, -0.011846465, 0.0066141714, -0.8979998, 0.426, 1.9945445)
 fov = 67.20268
 
 [node name="PhantomCameraHost" type="Node" parent="Control/Panel/SubViewportContainer/SubViewport/Camera3D"]
@@ -268,7 +195,161 @@ process_physics_priority = 300
 script = ExtResource("6_4dt6i")
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[connection signal="gui_input" from="ExampleBalloon/Balloon" to="ExampleBalloon" method="_on_balloon_gui_input"]
-[connection signal="response_selected" from="ExampleBalloon/Balloon/ResponsesMenu" to="ExampleBalloon" method="_on_responses_menu_response_selected"]
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109199986, 0.1428, 0.21, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/ColorRect2"]
+libraries = {
+&"": SubResource("AnimationLibrary_sc0n7")
+}
+
+[node name="Balloon" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_c4qo1")
+
+[node name="DialogueLabel3" type="RichTextLabel" parent="Balloon"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 157.0
+grow_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 152
+bbcode_enabled = true
+text = "[wave]disventurism[/wave]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="DialogueLabel2" type="RichTextLabel" parent="Balloon"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 153.0
+grow_horizontal = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 152
+bbcode_enabled = true
+text = "[wave amp=70.0 freq=3 connected=1]disventurism[/wave]"
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Balloon"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -255.0
+offset_top = -124.0
+offset_right = 255.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ura7")
+
+[node name="MarginContainer" type="MarginContainer" parent="Balloon/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 2
+mouse_filter = 1
+bbcode_enabled = true
+text = "Character"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Balloon/PanelContainer/MarginContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 66.23)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-2.0]press any button to land [/pulse]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+visible_characters_behavior = 1
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon" node_paths=PackedStringArray("response_template")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.5
+offset_top = -35.0
+offset_right = 290.5
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 2
+alignment = 1
+script = ExtResource("2_4dt6i")
+response_template = NodePath("ResponseExample")
+
+[node name="ResponseExample" type="Button" parent="Balloon/ResponsesMenu"]
+layout_mode = 2
+text = "Response example"
+
+[connection signal="finished" from="Node3D/AirplaneSeatbeltSignBeep" to="." method="load_main"]
+[connection signal="gui_input" from="Balloon" to="ExampleBalloon" method="_on_balloon_gui_input"]
+[connection signal="response_selected" from="Balloon/ResponsesMenu" to="ExampleBalloon" method="_on_responses_menu_response_selected"]
 
 [editable path="Node3D/plane2"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3d5wruvrntnk"
+path="res://.godot/imported/Hot Tub Loop Remix by AnLorenzo.mp3-c48cdcd92650f456ff37f7d57aaf43c4.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/Hot Tub Loop Remix by AnLorenzo.mp3"
+dest_files=["res://.godot/imported/Hot Tub Loop Remix by AnLorenzo.mp3-c48cdcd92650f456ff37f7d57aaf43c4.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

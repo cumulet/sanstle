@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2fiv8t0ixfsv"
+path="res://.godot/imported/Dive by Bruno Auzet.mp3-d9e5b1936396b8625d644c76fccea11f.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/Dive by Bruno Auzet.mp3"
+dest_files=["res://.godot/imported/Dive by Bruno Auzet.mp3-d9e5b1936396b8625d644c76fccea11f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

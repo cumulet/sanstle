@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://by08vevqkhq58"]
+
+[ext_resource type="Script" uid="uid://dvbedhqdxwqii" path="res://scripts/brazier.gd" id="1_gkshe"]
+[ext_resource type="ArrayMesh" uid="uid://d4akwjbcjpbow" path="res://meshes/brazier.res" id="2_or7us"]
+[ext_resource type="Material" uid="uid://dfsoq5rrkqy0n" path="res://materials/fire.tres" id="3_umqmk"]
+[ext_resource type="AudioStream" uid="uid://dqmh2hn083d4b" path="res://sound/sfx/Fire Crackles No Room by Krisboruff.mp3" id="4_luohh"]
+[ext_resource type="AudioStream" uid="uid://cijcj65lpuh4a" path="res://sound/sfx/Bonfire Being Lit.mp3" id="5_or7us"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jxurj"]
+material = ExtResource("3_umqmk")
+center_offset = Vector3(0, 0.19, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7pwf"]
+shading_mode = 0
+albedo_color = Color(1.891087, 0.9415313, 0.57363147, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_s87c8"]
+material = SubResource("StandardMaterial3D_c7pwf")
+size = Vector2(0.04, 0.04)
+
+[sub_resource type="Curve" id="Curve_q2hd2"]
+_limits = [0.0, 0.8787509, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.05769231, 0.7957458), 0.0, 0.0, 0, 0, Vector2(0.116987176, 0.8333213), 0.0, 0.0, 0, 0, Vector2(0.125, 0.36563927), 0.0, 0.0, 0, 0, Vector2(0.19711538, 0.8787509), 0.0, 0.0, 0, 0, Vector2(0.24679486, 0.6784265), 0.0, 0.0, 0, 0, Vector2(0.32371795, 0.66964036), 0.0, 0.0, 0, 0, Vector2(0.35576922, 0.8447573), 0.0, 0.0, 0, 0, Vector2(0.48397434, 0.6872127), 0.0, 0.0, 0, 0, Vector2(0.53525645, 0.8643619), 0.0, 0.0, 0, 0, Vector2(0.59134614, 0.74520135), 0.0, 0.0, 0, 0, Vector2(0.66185904, 0.8496584), 0.0, 0.0, 0, 0, Vector2(0.713141, 0.78561765), 0.0, 0.0, 0, 0, Vector2(0.75000006, 0.87743163), 0.0, 0.0, 0, 0, Vector2(0.823718, 0.7696063), 0.0, 0.0, 0, 0, Vector2(0.9182693, 0.72059476), 0.0, 0.0, 0, 0, Vector2(0.9407051, 0.8251527), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 18
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c7pwf"]
+height = 1.978
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jxurj"]
+radius = 1.0158937
+
+[node name="brazier1" type="RigidBody3D" node_paths=PackedStringArray("fire")]
+freeze = true
+script = ExtResource("1_gkshe")
+flammable = true
+fire = [NodePath("brazier1/fire"), NodePath("brazier1/CPUParticles3D")]
+ignited = true
+
+[node name="brazier1" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_or7us")
+skeleton = NodePath("")
+
+[node name="fire" type="MeshInstance3D" parent="brazier1"]
+transform = Transform3D(1.0839002, 0, 0, 0, 2.080918, 0, 0, 0, 0.7838403, -0.0011672936, 1.2499528, -0.014904022)
+mesh = SubResource("QuadMesh_jxurj")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="brazier1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4239316, 0)
+lifetime = 2.3299999999999996
+mesh = SubResource("QuadMesh_s87c8")
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 13.98
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.2
+initial_velocity_max = 0.5
+scale_amount_min = 0.2
+scale_amount_max = 0.5
+scale_amount_curve = SubResource("Curve_q2hd2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -4.4703484e-08, 4.4703484e-08, 1, -2.9802322e-07, -1.4901161e-07, 0, 1, 0, 0.92717457, 0)
+shape = SubResource("CylinderShape3D_c7pwf")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5158944, 0)
+shape = SubResource("SphereShape3D_jxurj")
+
+[node name="Fire" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_luohh")
+max_distance = 4.0
+
+[node name="Ignition" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_or7us")
+volume_db = -28.0
+max_distance = 5.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6254082, 0)
+light_color = Color(1, 0.71483845, 0.50371814, 1)
+shadow_enabled = true
+shadow_blur = 1.892
+omni_range = 10.277
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

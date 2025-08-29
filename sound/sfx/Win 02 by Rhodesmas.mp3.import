@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ilvadijhu8r6"
+path="res://.godot/imported/Win 02 by Rhodesmas.mp3-0d4cc2d34de9145b7ea03250ed7878f2.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/Win 02 by Rhodesmas.mp3"
+dest_files=["res://.godot/imported/Win 02 by Rhodesmas.mp3-0d4cc2d34de9145b7ea03250ed7878f2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

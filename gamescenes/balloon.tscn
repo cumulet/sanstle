@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgb6rhls858v0"]
+[gd_scene load_steps=6 format=3 uid="uid://cgb6rhls858v0"]
 
 [ext_resource type="Script" uid="uid://cj1hhi4n7y4j1" path="res://scripts/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Theme" uid="uid://klemp53rww1p" path="res://gamescenes/balloon.tres" id="2_c54uj"]
+[ext_resource type="AudioStream" uid="uid://bs0jiulefe00n" path="res://sound/sfx/S mb-tch-kch 2 033 by batchku.mp3" id="2_uh1sl"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_72ixx"]
 
 [node name="ExampleBalloon" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_36de5")
+
+[node name="talking_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uh1sl")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 anchors_preset = 15
@@ -111,4 +115,5 @@ layout_mode = 2
 text = "Response example"
 
 [connection signal="gui_input" from="AspectRatioContainer/Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="spoke" from="AspectRatioContainer/Balloon/PanelContainer/MarginContainer/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
 [connection signal="response_selected" from="AspectRatioContainer/Balloon/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

@@ -13,19 +13,28 @@ extends CharacterBody3D
 @export var water: MeshInstance3D
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var camera_3d: Camera3D = $"../Camera3D"
-
-
-@onready var watersplash: CPUParticles3D = $vfx/watersplash
+@onready var footsteps_sand: AudioStreamPlayer3D = $footsteps_sand
+@onready var footsteps_wood: AudioStreamPlayer3D = $footsteps_wood
+@onready var footsteps_water: AudioStreamPlayer3D = $footsteps_water
+@onready var footsteps_stone: AudioStreamPlayer3D = $footsteps_stone
+@onready var jump: AudioStreamPlayer3D = $jump
+@onready var swim: AudioStreamPlayer3D = $swim
+@onready var take: AudioStreamPlayer3D = $take
+@onready var drop: AudioStreamPlayer3D = $drop
+@onready var ray_cast_3d: RayCast3D = $RayCast3D
 
 @export var interactables : Array[Interactable] 
 var previous_closest_interactable: Interactable = null
 var closest_interactable : Interactable
 var selected_pickable : Interactable
 
+var _submerged_lock : bool
 var _submerged : bool
 var _isJumping : bool
 var _holding : bool
 var _interacting : bool
+
+signal watersplash
 	
 func addObject(body:Node3D):
 	if body is Interactable:
@@ -50,6 +59,7 @@ func _process(_delta: float) -> void:
 	previous_closest_interactable = closest_interactable
 
 func _physics_process(_delta):
+	if _submerged_lock : return
 	flotte()
 
 func flotte():
@@ -57,8 +67,7 @@ func flotte():
 	if water == null: return
 	var depth = (water.global_position.y - water_depth_offset) - global_position.y 
 	if depth > 0:
-		if velocity.y < -5 : watersplash.emitting = true
-		
+		if velocity.y < -5 : watersplash.emit()
 		_submerged = true
 		velocity *=  1 - water_drag
 		velocity += Vector3.UP *.1 * 9.81 * depth
@@ -159,6 +168,7 @@ func character_proces(delta:float,x_input:float, y_input:float, jump_input:float
 	move_and_slide()
 
 func _jump() -> void:
+	jump.play()
 	velocity.y += jump_force 
 
 func interact():
@@ -169,3 +179,32 @@ func interact():
 func _interacting_end():
 	if _holding: return
 	_interacting = false
+
+func play_footstep():
+	var col = ray_cast_3d.get_collider()
+	if col == null: return
+	if col.is_in_group("sand"):
+		footsteps_sand.pitch_scale = randf_range(0.8, 1.2)
+		footsteps_sand.play()
+		return
+		
+	if col.is_in_group("wood"):
+		footsteps_wood.pitch_scale = randf_range(0.8, 1.2)
+		footsteps_wood.play()
+		return
+		
+	if col.is_in_group("water"):
+		footsteps_water.pitch_scale = randf_range(0.8, 1.2)
+		footsteps_water.play()
+		return
+	
+	if col.is_in_group("stone"):
+		footsteps_stone.pitch_scale = randf_range(0.8, 1.2)
+		footsteps_stone.play()
+		return
+
+	footsteps_sand.pitch_scale = randf_range(0.8, 1.2)
+	footsteps_sand.play()
+func play_swim():
+	swim.pitch_scale = randf_range(0.8, 1.2)
+	swim.play()

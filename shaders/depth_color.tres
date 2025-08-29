@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=4 format=3 uid="uid://bsj8ynr8io2bx"]
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://bsj8ynr8io2bx"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_63y48"]
 parameter_name = "ColorParameter"
@@ -12,11 +12,20 @@ parameter_name = "fog_dist"
 default_value_enabled = true
 default_value = 1.0
 
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_63y48"]
+function = 31
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_85u0q"]
+parameter_name = "switch_depth"
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_jdo7o"]
+
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx;
 
 uniform vec4 ColorParameter : source_color = vec4(0.000000, 0.000000, 0.000000, 1.000000);
+uniform bool switch_depth;
 uniform float fog_dist = 1.0;
 uniform sampler2D depth_tex_frg_3 : hint_depth_texture;
 
@@ -25,6 +34,10 @@ uniform sampler2D depth_tex_frg_3 : hint_depth_texture;
 void fragment() {
 // ColorParameter:2
 	vec4 n_out2p0 = ColorParameter;
+
+
+// BooleanParameter:7
+	bool n_out7p0 = switch_depth;
 
 
 // FloatParameter:4
@@ -41,18 +54,34 @@ void fragment() {
 	}
 
 
+// FloatFunc:5
+	float n_out5p0 = 1.0 - n_out3p0;
+
+
+	float n_out8p0;
+// Switch:8
+	n_out8p0 = mix(n_out3p0, n_out5p0, float(n_out7p0));
+
+
 // Output:0
 	ALBEDO = vec3(n_out2p0.xyz);
-	ALPHA = n_out3p0;
+	ALPHA = n_out8p0;
 	EMISSION = vec3(n_out2p0.xyz);
 
 
 }
 "
+modes/cull = 2
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_63y48")
 nodes/fragment/2/position = Vector2(-720, -100)
 nodes/fragment/3/node = SubResource("VisualShaderNodeProximityFade_85u0q")
-nodes/fragment/3/position = Vector2(-180, 360)
+nodes/fragment/3/position = Vector2(-1560, 400)
 nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_jdo7o")
-nodes/fragment/4/position = Vector2(-700, 360)
-nodes/fragment/connections = PackedInt32Array(3, 0, 0, 1, 4, 0, 3, 0, 2, 0, 0, 0, 2, 0, 0, 5)
+nodes/fragment/4/position = Vector2(-2100, 360)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatFunc_63y48")
+nodes/fragment/5/position = Vector2(-900, 400)
+nodes/fragment/7/node = SubResource("VisualShaderNodeBooleanParameter_85u0q")
+nodes/fragment/7/position = Vector2(-1460, 880)
+nodes/fragment/8/node = SubResource("VisualShaderNodeSwitch_jdo7o")
+nodes/fragment/8/position = Vector2(-40, 640)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 0, 2, 0, 0, 0, 3, 0, 5, 0, 2, 0, 0, 5, 7, 0, 8, 0, 5, 0, 8, 1, 3, 0, 8, 2, 8, 0, 0, 1)

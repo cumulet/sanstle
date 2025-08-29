@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dohkamwpr8w6s"
+path="res://.godot/imported/p_water_jump.dialogue-e6fce7b397861466124a1521fb8e3b11.tres"
+
+[deps]
+
+source_file="res://dialogues/p_water_jump.dialogue"
+dest_files=["res://.godot/imported/p_water_jump.dialogue-e6fce7b397861466124a1521fb8e3b11.tres"]
+
+[params]
+
+defaults=true

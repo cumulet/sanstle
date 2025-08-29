@@ -1,10 +1,7 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dpsy1h4yheoth"]
-
-[ext_resource type="Texture2D" uid="uid://bjs4cp6jfj7uh" path="res://textures/sand/Aerial Beach 4K (1).jpg" id="1_fiptr"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dpsy1h4yheoth"]
 
 [resource]
 albedo_color = Color(0.7764706, 0.654902, 0.50980395, 1)
 normal_enabled = true
 normal_scale = -1.46
-normal_texture = ExtResource("1_fiptr")
 uv1_scale = Vector3(0.08, 0.08, 0.08)

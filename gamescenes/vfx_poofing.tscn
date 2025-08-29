@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmpb1q3nqema5"]
+
+[ext_resource type="PackedScene" uid="uid://diryiphuvfhvm" path="res://gamescenes/vfx_poof.tscn" id="1_n2k4a"]
+
+[node name="poofing" type="Node3D"]
+
+[node name="CPUParticles3D" parent="." instance=ExtResource("1_n2k4a")]

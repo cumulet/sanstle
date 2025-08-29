@@ -1,12 +1,14 @@
 class_name CustomDialogue
 extends CanvasLayer
 ## A basic dialogue balloon for use with Dialogue Manager.
+@onready var talking_sound: AudioStreamPlayer = $talking_sound
 
 ## The action to use for advancing the dialogue
 @export var next_action: StringName = &"ui_accept"
 
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
+@export var type_sound: AudioStreamPlayer
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -127,11 +129,9 @@ func apply_dialogue_line() -> void:
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
 
-
 ## Go to the next line
 func next(next_id: String) -> void:
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
-
 #region Signals
 
 
@@ -171,3 +171,10 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
 #endregion
+
+
+func _on_dialogue_label_spoke(letter: String, letter_index: int, speed: float) -> void:
+	if letter != "." || letter != ",":
+		if letter_index%5 ==0:
+			talking_sound.pitch_scale = randf_range(0.8,1.3)
+			talking_sound.play()

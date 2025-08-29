@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://chddl6uc0g11k"
+path="res://.godot/imported/p_castle.dialogue-81df57c0eedb54df63182afc60170784.tres"
+
+[deps]
+
+source_file="res://dialogues/p_castle.dialogue"
+dest_files=["res://.godot/imported/p_castle.dialogue-81df57c0eedb54df63182afc60170784.tres"]
+
+[params]
+
+defaults=true
