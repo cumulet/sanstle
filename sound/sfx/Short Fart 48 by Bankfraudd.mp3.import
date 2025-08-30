@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://o153fdttqwyk"
+path="res://.godot/imported/Short Fart 48 by Bankfraudd.mp3-48e68ba75796bec05a0c6071d01a612a.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/Short Fart 48 by Bankfraudd.mp3"
+dest_files=["res://.godot/imported/Short Fart 48 by Bankfraudd.mp3-48e68ba75796bec05a0c6071d01a612a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

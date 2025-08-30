@@ -6,5 +6,5 @@ func _on_body_entered(body: Node3D) -> void:
 		print("is character")
 		print(body.velocity)
 		if body.velocity.y < -1:
-			audio_jump.play()
+			if audio_jump != null: audio_jump.play()
 			body.velocity.y = trampoline_force

@@ -9,6 +9,7 @@ extends RigidBody3D
 @export var ignited : bool 
 @export var closest : bool
 @export var water: MeshInstance3D
+@export var can_float: bool = true
 
 const BALLOON_UI = preload("uid://d2fftv85mgtvb")
 
@@ -25,7 +26,7 @@ func _ready() -> void:
 		_fire_out()
 		
 func _physics_process(_delta: float) -> void:
-	flotte()
+	if can_float : flotte()
 
 func is_closest():
 	if !closest:

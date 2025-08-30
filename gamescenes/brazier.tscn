@@ -51,6 +51,7 @@ mesh = SubResource("QuadMesh_jxurj")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="brazier1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4239316, 0)
+cast_shadow = 0
 lifetime = 2.3299999999999996
 mesh = SubResource("QuadMesh_s87c8")
 emission_shape = 1

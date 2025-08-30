@@ -9,7 +9,6 @@ extends CharacterBody3D
 @export var rotation_speed := 15.0
 @export var water_drag := 0.05
 @export var water_depth_offset := .2
-@export var grabbed_object_offset : Vector3 = Vector3(0,1,-.7)
 @export var water: MeshInstance3D
 @onready var animation_player: AnimationPlayer = $character/AnimationPlayer
 @onready var camera_3d: Camera3D = $"../Camera3D"
