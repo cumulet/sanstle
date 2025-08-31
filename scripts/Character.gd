@@ -116,14 +116,12 @@ func character_proces(delta:float,x_input:float, y_input:float, jump_input:float
 	
 	if jump_input != 0 && last_jump_input == 0:
 		last_jump_input = 1
-		print("1")
 		if is_on_floor() && !_isJumping:
 			_isJumping = true
 			animation_player.play("Jump")
 			get_tree().create_timer(0.1677).timeout.connect(_jump)
 	elif jump_input == 0 && last_jump_input == 1:
 		last_jump_input = 0
-		print("0")
 	
 	if _isJumping && velocity.y < -0.2:
 		_isJumping = false
