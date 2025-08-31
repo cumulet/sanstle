@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="chato"
-run/main_scene="uid://cqow47bch5ocs"
+run/main_scene="uid://8wuj3x835bh6"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0.049999706, 1, 1)
 boot_splash/image="uid://c4cbn1kpeedui"
