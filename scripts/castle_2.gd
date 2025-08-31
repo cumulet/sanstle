@@ -44,6 +44,7 @@ func _on_key_detection_area_1_body_entered(body: Node3D) -> void:
 		is_key_1_inserted = true
 		update_door()
 		is_key_animation_playing = false
+		body.set_script(null)
 
 
 func _on_key_detection_area_2_body_entered(body: Node3D) -> void:
@@ -63,3 +64,4 @@ func _on_key_detection_area_2_body_entered(body: Node3D) -> void:
 		is_key_2_inserted = true
 		update_door()
 		is_key_animation_playing = false
+		body.set_script(null)
