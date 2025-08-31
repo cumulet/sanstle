@@ -21,10 +21,10 @@ func _process(delta: float) -> void:
 
 		selected_player.character_proces(delta, x_input, y_input, jump_input, take_input)
 	else:
-		var x_input_pos = 1 if Input.is_key_pressed(KEY_D) else 0
-		var x_input_neg = -1 if Input.is_key_pressed(KEY_Q) else 0
-		var y_input_pos = 1 if Input.is_key_pressed(KEY_Z) else 0
-		var y_input_neg = -1 if Input.is_key_pressed(KEY_S) else 0
+		var x_input_pos = 1 if Input.is_physical_key_pressed(KEY_D) else 0
+		var x_input_neg = -1 if Input.is_physical_key_pressed(KEY_A) else 0
+		var y_input_pos = 1 if Input.is_physical_key_pressed(KEY_W) else 0
+		var y_input_neg = -1 if Input.is_physical_key_pressed(KEY_S) else 0
 		var x_input = x_input_pos + x_input_neg
 		var y_input = y_input_pos + y_input_neg
 		
