@@ -34,14 +34,17 @@ var _holding : bool
 var _interacting : bool
 
 signal watersplash
-	
+
+
 func addObject(body:Node3D):
 	if body is Interactable:
 		interactables.append(body)
 
+
 func removeObject(body:Node3D):
 	if body is Interactable:
 		interactables.remove_at(interactables.find(body))
+
 
 func _process(_delta: float) -> void:
 	closest_interactable = get_closest_interactable()
@@ -57,9 +60,11 @@ func _process(_delta: float) -> void:
 	
 	previous_closest_interactable = closest_interactable
 
+
 func _physics_process(_delta):
 	if _submerged_lock : return
 	flotte()
+
 
 func flotte():
 	_submerged = false
@@ -70,6 +75,7 @@ func flotte():
 		_submerged = true
 		velocity *=  1 - water_drag
 		velocity += Vector3.UP *.1 * 9.81 * depth
+
 
 func get_closest_interactable(max_angle: float = 90.0) -> Interactable:
 	if interactables.is_empty():
@@ -101,14 +107,16 @@ func get_closest_interactable(max_angle: float = 90.0) -> Interactable:
 				closest = i
 
 	return closest
-	
+
+
 func character_proces(delta:float,x_input:float, y_input:float, jump_input:float, take_input:float):
 	velocity.y -= 9.81 * delta
 	
 	if jump_input != 0:
-		if is_on_floor(): 
+		if is_on_floor() && !_isJumping:
 			_isJumping = true
 			animation_player.play("Jump")
+			get_tree().create_timer(0.1677).timeout.connect(_jump)
 	
 	if _isJumping && velocity.y < -0.2:
 		_isJumping = false
@@ -166,18 +174,22 @@ func character_proces(delta:float,x_input:float, y_input:float, jump_input:float
 	# 7) Move
 	move_and_slide()
 
+
 func _jump() -> void:
 	jump.play()
-	velocity.y += jump_force 
+	velocity.y += jump_force
+
 
 func interact():
 	if closest_interactable != null:
 		_interacting = true
 		closest_interactable.interact(self)
 
+
 func _interacting_end():
 	if _holding: return
 	_interacting = false
+
 
 func play_footstep():
 	var col = ray_cast_3d.get_collider()
@@ -204,6 +216,8 @@ func play_footstep():
 
 	footsteps_sand.pitch_scale = randf_range(0.8, 1.2)
 	footsteps_sand.play()
+
+
 func play_swim():
 	swim.pitch_scale = randf_range(0.8, 1.2)
 	swim.play()
