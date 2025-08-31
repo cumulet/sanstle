@@ -52,7 +52,7 @@ _subresources={
 "generate/shadow_meshes": 0,
 "lods/normal_merge_angle": 20.0,
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://blender_files/bridge.res",
+"save_to_file/fallback_path": "res://meshes/bridge.res",
 "save_to_file/path": "uid://d3dmbl55m21rc"
 }
 }

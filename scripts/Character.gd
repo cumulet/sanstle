@@ -204,6 +204,7 @@ func play_footstep():
 
 	footsteps_sand.pitch_scale = randf_range(0.8, 1.2)
 	footsteps_sand.play()
+
 func play_swim():
 	swim.pitch_scale = randf_range(0.8, 1.2)
 	swim.play()
