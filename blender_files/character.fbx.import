@@ -8267,7 +8267,7 @@ _subresources={
 "materials": {
 "body": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://materials/character_material_body.tres",
+"use_external/fallback_path": "res://materials/character_material_body_1.tres",
 "use_external/path": "uid://di6oqny537phn"
 },
 "membres": {

@@ -17,7 +17,7 @@ func interact(parent:Node3D = null):
 					position = picked_wanted_offset
 					parent._holding = true;
 			else :
-					reparent(get_tree().get_root())
+					reparent(get_tree().get_root().get_node("main"))
 					parent.selected_pickable = null
 					parent.drop.play()
 					linear_velocity = Vector3.ZERO
