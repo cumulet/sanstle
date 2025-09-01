@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgt8nlnnj71l"
 path.s3tc="res://.godot/imported/waterdrop_1.png-f4e9196c4aef512c389c10949f5a7dc1.s3tc.ctex"
+path.etc2="res://.godot/imported/waterdrop_1.png-f4e9196c4aef512c389c10949f5a7dc1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/waterdrop_1.png"
-dest_files=["res://.godot/imported/waterdrop_1.png-f4e9196c4aef512c389c10949f5a7dc1.s3tc.ctex"]
+dest_files=["res://.godot/imported/waterdrop_1.png-f4e9196c4aef512c389c10949f5a7dc1.s3tc.ctex", "res://.godot/imported/waterdrop_1.png-f4e9196c4aef512c389c10949f5a7dc1.etc2.ctex"]
 
 [params]
 

@@ -11,16 +11,18 @@ config_version=5
 [application]
 
 config/name="chato"
-run/main_scene="uid://cqow47bch5ocs"
+run/main_scene="uid://8wuj3x835bh6"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0.049999706, 1, 1)
 boot_splash/image="uid://c4cbn1kpeedui"
+config/icon="uid://bdhs8j50d1hs4"
 boot_splash/minimum_display_time=3000
 
 [autoload]
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GlobalVar="*res://scripts/global_var.gd"
 
 [dialogue_manager]
 
@@ -70,7 +72,7 @@ interract={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/pickable.dialogue", "res://dialogues/talkable.dialogue", "res://dialogues/interactable.dialogue", "res://dialogues/relax.dialogue", "res://dialogues/hotspring_person.dialogue", "res://dialogues/brother_letter.dialogue", "res://dialogues/readable.dialogue", "res://dialogues/p_start.dialogue", "res://dialogues/p_hot_water.dialogue", "res://dialogues/p_water_jump.dialogue", "res://dialogues/p_castle.dialogue", "res://dialogues/brother_letter2.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/pickable.dialogue", "res://dialogues/talkable.dialogue", "res://dialogues/interactable.dialogue", "res://dialogues/relax.dialogue", "res://dialogues/hotspring_person.dialogue", "res://dialogues/brother_letter.dialogue", "res://dialogues/readable.dialogue", "res://dialogues/p_start.dialogue", "res://dialogues/p_hot_water.dialogue", "res://dialogues/p_water_jump.dialogue", "res://dialogues/p_castle.dialogue", "res://dialogues/brother_letter2.dialogue", "res://dialogues/p_end.dialogue", "res://dialogues/p_last.dialogue")
 
 [layer_names]
 
@@ -83,3 +85,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogues/pickable.dialog
 
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

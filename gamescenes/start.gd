@@ -6,14 +6,17 @@ const MAIN = "res://gamescenes/main.tscn"
 @onready var airplane_ambiance: AudioStreamPlayer = $Node3D/AirplaneAmbiance
 
 var launched := false
-
+var _can_start := false
 
 func _ready() -> void:
 	animation_player.play("fade_in")
 	
+func enable_start():
+	_can_start = true
+	
 func _input(event: InputEvent) -> void:
-	if launched:
-		return
+	if !_can_start: return
+	if launched: return
 		
 	if (event is InputEventKey || event is InputEventJoypadButton || event is InputEventMouseButton):
 		airplane_seatbelt_sign_beep.play()

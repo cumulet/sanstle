@@ -1,5 +1,7 @@
 shader_type spatial;
 
+render_mode cull_front, unshaded;
+
 uniform vec4 bg_color: source_color;
 uniform vec2 offset;
 uniform float bigStarSlow = 2.0;

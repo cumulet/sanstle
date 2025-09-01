@@ -18,6 +18,7 @@ func update_ponds():
 func succeed_pond_test():
 	(hot_spring as CustomAudio3D)._play_soft()
 	(win as CustomAudio3D)._play_soft()
+	GlobalVar.hot_spring = true
 	for p in pond_steam_particles:
 		p.emitting = true
 		

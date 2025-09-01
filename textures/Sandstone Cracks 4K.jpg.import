@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://x5ycivmjqn1r"
 path.s3tc="res://.godot/imported/Sandstone Cracks 4K.jpg-e8423b6ead9263eeb3e99fa373af0266.s3tc.ctex"
+path.etc2="res://.godot/imported/Sandstone Cracks 4K.jpg-e8423b6ead9263eeb3e99fa373af0266.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Sandstone Cracks 4K.jpg"
-dest_files=["res://.godot/imported/Sandstone Cracks 4K.jpg-e8423b6ead9263eeb3e99fa373af0266.s3tc.ctex"]
+dest_files=["res://.godot/imported/Sandstone Cracks 4K.jpg-e8423b6ead9263eeb3e99fa373af0266.s3tc.ctex", "res://.godot/imported/Sandstone Cracks 4K.jpg-e8423b6ead9263eeb3e99fa373af0266.etc2.ctex"]
 
 [params]
 

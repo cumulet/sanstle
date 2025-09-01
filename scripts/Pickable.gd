@@ -5,6 +5,7 @@ extends Interactable
 @export var picked_wanted_offset : Vector3
 
 func interact(parent:Node3D = null):
+	if _interact_lock: return
 	super.interact(parent)
 	if parent != null:
 		if parent is Character:

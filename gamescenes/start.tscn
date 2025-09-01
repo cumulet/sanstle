@@ -97,6 +97,10 @@ shadow_offset = Vector2(10, 10)
 [node name="Start" type="Node3D"]
 script = ExtResource("1_4dt6i")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [node name="ExampleBalloon" type="CanvasLayer" parent="."]
 layer = 100
 
@@ -186,7 +190,7 @@ size = Vector2i(1522, 512)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Control/Panel/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.012938308, -0.010140104, -0.9998649, 0.012166224, 0.99987614, -0.009982787, 0.99984235, -0.012035421, 0.0130600715, -0.8979998, 0.426, 1.9945445)
+transform = Transform3D(0.0058447216, -0.00017419386, -0.9999829, 0.0053794566, 0.9999855, -0.00014275234, 0.99996847, -0.0053785304, 0.0058455737, -0.8979998, 0.426, 1.9945445)
 fov = 67.20268
 
 [node name="PhantomCameraHost" type="Node" parent="Control/Panel/SubViewportContainer/SubViewport/Camera3D"]
@@ -271,6 +275,7 @@ deselect_on_focus_loss_enabled = false
 visible_characters_behavior = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Balloon"]
+visible = false
 clip_children = 2
 layout_mode = 1
 anchors_preset = 7
@@ -348,6 +353,8 @@ response_template = NodePath("ResponseExample")
 layout_mode = 2
 text = "Response example"
 
+[connection signal="timeout" from="Timer" to="." method="enable_start"]
+[connection signal="timeout" from="Timer" to="Balloon/PanelContainer" method="set_visible" binds= [true]]
 [connection signal="finished" from="Node3D/AirplaneSeatbeltSignBeep" to="." method="load_main"]
 [connection signal="gui_input" from="Balloon" to="ExampleBalloon" method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/ResponsesMenu" to="ExampleBalloon" method="_on_responses_menu_response_selected"]

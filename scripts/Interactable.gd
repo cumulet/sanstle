@@ -18,6 +18,7 @@ var _dialogue_lock : bool
 var _current_baloon_ui : CustomDialogue
 var done : bool
 var fire_is_out: bool
+var _interact_lock:=false
 
 func _ready() -> void:
 	if ignited:
@@ -43,6 +44,7 @@ func interact(parent:Node3D = null):
 	hide_ui()
 
 func show_ui():
+	if _interact_lock: return
 	if ui_text == null:return
 	_current_baloon_ui = BALLOON_UI.instantiate()
 	get_tree().root.add_child(_current_baloon_ui)

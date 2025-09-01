@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://yk7semmm1fyx"]
+
+[ext_resource type="Shader" uid="uid://c3d638behmwd8" path="res://shaders/water.gdshader" id="1_dg741"]
+[ext_resource type="Texture2D" uid="uid://x5ycivmjqn1r" path="res://textures/Sandstone Cracks 4K.jpg" id="2_l6cqj"]
+[ext_resource type="Texture2D" uid="uid://bkdydimlv6gjn" path="res://textures/sand/Aerial Beach 4K.jpg" id="3_ureme"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ehhqj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wr82o"]
+noise = SubResource("FastNoiseLite_ehhqj")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dg741")
+shader_parameter/underwater_top_color = Color(0.8346143, 0.8346143, 0.8346143, 1)
+shader_parameter/water_shallows = Color(0.15947932, 0.47193056, 0.6281563, 1)
+shader_parameter/water_depth = Color(4.6927482e-07, 0.20913959, 0.2788443, 1)
+shader_parameter/AirIOR = 1.0
+shader_parameter/IOR = 1.33
+shader_parameter/sampler1speed = Vector2(0.02, 0)
+shader_parameter/sampler2speed = Vector2(0, 0.02)
+shader_parameter/samplermix = 0.80000001192096
+shader_parameter/samplerscale = Vector2(0.1, 0.1)
+shader_parameter/normal1tex = ExtResource("2_l6cqj")
+shader_parameter/normal2tex = ExtResource("3_ureme")
+shader_parameter/normalstrength = 0.23999999463552
+shader_parameter/height1tex = SubResource("NoiseTexture2D_wr82o")
+shader_parameter/heightstrength = 0.999999977648
+shader_parameter/refrationamount = 0.22999999485904
+shader_parameter/fog_underwater = false
+shader_parameter/edge_size = 0.1
+shader_parameter/foam_or_fade = false
+shader_parameter/smoothstep_value_min = 4.830000000001746
+shader_parameter/smoothstep_value_max = -1.8399999999965075
+shader_parameter/shallow_transpancy = 0.2600000000093132
+shader_parameter/far_clip = 50.0
+shader_parameter/steps = 272
+shader_parameter/ssr_screen_fade = 0.1499999966472

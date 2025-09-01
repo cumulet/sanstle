@@ -1,0 +1,6 @@
+~ start
+% parent: [shake rate=20 level=10]wow, it's very dangerous here[/shake]
+% parent: [shake rate=20 level=10]be careful, dont fall[/shake]
+% parent: [shake rate=20 level=10]where are we? be careful keep walking on us[/shake]
+% parent: [shake rate=20 level=10]are you even thinking about this! you can not fall![/shake]
+=> END

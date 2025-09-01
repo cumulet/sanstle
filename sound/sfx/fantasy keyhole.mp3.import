@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3hd21dg8rud1"
+path="res://.godot/imported/fantasy keyhole.mp3-3e9c30e7032eef26967117005cd53e67.mp3str"
+
+[deps]
+
+source_file="res://sound/sfx/fantasy keyhole.mp3"
+dest_files=["res://.godot/imported/fantasy keyhole.mp3-3e9c30e7032eef26967117005cd53e67.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,3 +1,5 @@
 ~ start
-parent: [[go and play but don't go too far.|be careful.|we are busy, be careful not to hurt yourself around here.]]
+% parent: go and play but don't go too far.
+% parent: be careful.
+% parent: we are busy, be careful not to hurt yourself around here.
 => END

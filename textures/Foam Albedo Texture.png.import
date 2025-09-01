@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctu2brvb13i72"
 path.s3tc="res://.godot/imported/Foam Albedo Texture.png-9f9f24dd2e5204d258e3f5ddebc1dc4a.s3tc.ctex"
+path.etc2="res://.godot/imported/Foam Albedo Texture.png-9f9f24dd2e5204d258e3f5ddebc1dc4a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/Foam Albedo Texture.png"
-dest_files=["res://.godot/imported/Foam Albedo Texture.png-9f9f24dd2e5204d258e3f5ddebc1dc4a.s3tc.ctex"]
+dest_files=["res://.godot/imported/Foam Albedo Texture.png-9f9f24dd2e5204d258e3f5ddebc1dc4a.s3tc.ctex", "res://.godot/imported/Foam Albedo Texture.png-9f9f24dd2e5204d258e3f5ddebc1dc4a.etc2.ctex"]
 
 [params]
 

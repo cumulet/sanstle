@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://drcsvolm0i5te"
 path.s3tc="res://.godot/imported/bridge_albedo.png-364b52f0898e39ba0db41a2b3d12f496.s3tc.ctex"
+path.etc2="res://.godot/imported/bridge_albedo.png-364b52f0898e39ba0db41a2b3d12f496.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/bridge_albedo.png"
-dest_files=["res://.godot/imported/bridge_albedo.png-364b52f0898e39ba0db41a2b3d12f496.s3tc.ctex"]
+dest_files=["res://.godot/imported/bridge_albedo.png-364b52f0898e39ba0db41a2b3d12f496.s3tc.ctex", "res://.godot/imported/bridge_albedo.png-364b52f0898e39ba0db41a2b3d12f496.etc2.ctex"]
 
 [params]
 

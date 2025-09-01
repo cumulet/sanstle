@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://5xq6fx2ax213"
 path.s3tc="res://.godot/imported/bridge_nomal.jpg-fd436ab8a77b990369b11ef4d1c73d3c.s3tc.ctex"
+path.etc2="res://.godot/imported/bridge_nomal.jpg-fd436ab8a77b990369b11ef4d1c73d3c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/bridge_nomal.jpg"
-dest_files=["res://.godot/imported/bridge_nomal.jpg-fd436ab8a77b990369b11ef4d1c73d3c.s3tc.ctex"]
+dest_files=["res://.godot/imported/bridge_nomal.jpg-fd436ab8a77b990369b11ef4d1c73d3c.s3tc.ctex", "res://.godot/imported/bridge_nomal.jpg-fd436ab8a77b990369b11ef4d1c73d3c.etc2.ctex"]
 
 [params]
 
