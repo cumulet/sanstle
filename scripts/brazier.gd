@@ -1,6 +1,6 @@
 class_name Brazier
 extends Interactable
-@onready var succeed_fire: PondTest = $"../SucceedFire"
+@export var succeed_fire: PondTest
 
 @onready var fire_sound: AudioStreamPlayer3D = $Fire
 @onready var ignition_sound: AudioStreamPlayer3D = $Ignition
@@ -9,6 +9,7 @@ extends Interactable
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Interactable:
 		if body.flammable && flammable:
+			if !body.ignited && !ignited: return
 			if body.ignited && ignited: return
 			if ignition_sound != null: ignition_sound.play()
 			if !body.ignited:

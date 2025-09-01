@@ -1,7 +1,7 @@
 extends Area3D
 @export var trampoline_force := 5.0
 @export var audio_jump:AudioStreamPlayer3D
-@onready var key: Key = $"../../../castle2/key3"
+@export var key : Key
 
 var _key_out : bool
 func _on_body_entered(body: Node3D) -> void:
@@ -13,6 +13,7 @@ func _on_body_entered(body: Node3D) -> void:
 			body.velocity.y = trampoline_force
 
 func _on_body_entered_spawn_key(body: Node3D) -> void:
+	if key == null: return
 	if body is CharacterBody3D:
 		print("is character")
 		print(body.velocity)
