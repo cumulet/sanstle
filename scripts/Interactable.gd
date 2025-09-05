@@ -44,6 +44,7 @@ func interact(parent:Node3D = null):
 	hide_ui()
 
 func show_ui():
+	if GlobalVar.interacting: return
 	if _interact_lock: return
 	if ui_text == null:return
 	_current_baloon_ui = BALLOON_UI.instantiate()

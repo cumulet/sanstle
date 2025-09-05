@@ -5,6 +5,7 @@ extends Interactable
 @export var picked_wanted_offset : Vector3
 
 func interact(parent:Node3D = null):
+	#if GlobalVar.interacting: return
 	if _interact_lock: return
 	super.interact(parent)
 	if parent != null:
@@ -18,10 +19,15 @@ func interact(parent:Node3D = null):
 				rotation_degrees = picked_wanted_rotation
 				position = picked_wanted_offset
 			else :
-				reparent(get_tree().get_root().get_node("main"))
-				parent._holding = false
-				parent.selected_pickable = null
-				parent.drop.play()
-				linear_velocity = Vector3.ZERO
-				parent._interacting = false
-				freeze = false
+				for child in parent.get_children():
+					if child is Pickable:
+						if child == self:
+							reparent(get_tree().get_root().get_node("main"))
+							parent._holding = false
+							parent.selected_pickable = null
+							parent.drop.play()
+							linear_velocity = Vector3.ZERO
+							parent._interacting = false
+							freeze = false
+						else:
+							return
