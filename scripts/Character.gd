@@ -24,7 +24,7 @@ extends CharacterBody3D
 
 @export var interactables : Array[Interactable] 
 var previous_closest_interactable: Interactable = null
-var closest_interactable : Interactable
+@export var closest_interactable : Interactable
 var selected_pickable : Interactable
 
 var _submerged_lock : bool
@@ -49,10 +49,10 @@ func removeObject(body:Node3D):
 
 
 func _process(_delta: float) -> void:
-	closest_interactable = get_closest_interactable()
-	
+	if !_holding:
+		closest_interactable = get_closest_interactable()
 	if closest_interactable != null:
-		if !_interacting:
+		if !_interacting: 
 			closest_interactable.is_closest()
 	
 	if closest_interactable == null && previous_closest_interactable != null:
@@ -189,7 +189,6 @@ func interact():
 	if closest_interactable != null:
 		_interacting = true
 		closest_interactable.interact(self)
-
 
 func _interacting_end():
 	if _holding: return

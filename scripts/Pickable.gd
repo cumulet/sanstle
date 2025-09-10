@@ -7,11 +7,12 @@ extends Interactable
 func interact(parent:Node3D = null):
 	if _interact_lock: return
 	super.interact(parent)
+	
 	if parent != null:
 		if parent is Character:
 			if !parent._holding:
 				reparent(parent)
-				parent._holding = true;
+				parent._holding = true
 				parent.selected_pickable = self
 				parent.take.play()
 				freeze = true
